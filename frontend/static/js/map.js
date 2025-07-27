@@ -71,7 +71,52 @@ function drawRoute(coords) {
     map.fitBounds(currentPolyline.getBounds());
 }
 
+// 보행안전지수 시각화 
+/*
+fetch("/data/보행안전지수지도.geojson")
+  .then(res => res.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: { color: "orange", weight: 1, fillOpacity: 0.3 },
+      onEachFeature: (feature, layer) => {
+        const props = feature.properties;
+        layer.bindPopup(`<b>보행안전지수:</b> ${props.보행안전지수 || '없음'}`);
+      }
+    }).addTo(map);
+  });
+  */
+  // 보행안전지수 시각화 
+fetch("/data/보행안전지수지도.geojson")
+  .then(res => res.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: { color: "orange", weight: 1, fillOpacity: 0.3 },
+      onEachFeature: (feature, layer) => {
+        const props = feature.properties;
+        layer.bindPopup(`<b>보행안전지수지도:</b> ${props["보행안전지"] ?? '정보 없음'}`);
+      }
+    }).addTo(map);
+  });
 
+// 보행약사시설물 시각화 
+fetch("/data/보행약사시설물.geojson")
+  .then(res => res.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: { color: "red", weight: 1, fillOpacity: 0.5 },
+      onEachFeature: (feature, layer) => {
+        const props = feature.properties;
+        const name = props.시설명 || props.종류 || props.유형 || props.구분 || "정보 없음";
+        layer.bindPopup(`<b>보행약자시설물:</b> ${name}`);
+      }
+    }).addTo(map);
+  });
+
+  layer.bindPopup(
+  Object.entries(props)
+    .map(([key, val]) => `<b>${key}</b>: ${val ?? '없음'}`)
+    .join("<br>")
+);
 
 async function searchLocation(inputId) {
     const query = document.getElementById(inputId).value.trim();
