@@ -4,3 +4,6 @@ requests
 polyline
 osmnx
 networkx
+sqlalchemy
+pymysql
+python-dotenv
