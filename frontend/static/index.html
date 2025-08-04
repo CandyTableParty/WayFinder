@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transport AI Navi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="form-section">
+            <input id="start" placeholder="출발 (예: 서울역)" />
+            <button onclick="searchLocation('start')">🔍</button>
+            <button onclick="useCurrentLocation()">📍 내 위치</button>
+            <br/>
+            <input id="end" placeholder="도착 (예: 강남역)" />
+            <button onclick="searchLocation('end')">🔍</button>
+            <br/>
+            <select id="disabledType">
+                <option value="wheelchair">휠체어</option>
+                <option value="stroller">유모차</option>
+                <option value="elderly">노약자</option>
+                <option value="night">심야</option>
+            </select>
+            <button onclick="getRoute()">경로 추천</button>
+            <br/>
+            <button onclick="loadDangerZones()">위험지점 보기(구현중)</button>
+        </div>
+        <div id="map"></div>
+    </div>
+    <script src="js/map.js"></script> 
+</body>
+</html>

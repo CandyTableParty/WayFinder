@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+polyline
+osmnx
+networkx
+sqlalchemy
+pymysql
+python-dotenv
